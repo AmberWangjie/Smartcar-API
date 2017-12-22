@@ -1,27 +1,38 @@
-# Project Title
+# Smartcar API implementation
 
-One Paragraph of project description goes here
+A RESTful API implementation turning information from GM API into clear format on Smartcar endpoints
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Following are the prerequisites to run this program you need to install and how to intall them
 
 ```
-Give examples
+Python3 - The project was built using Python 3.6.3, to see which version of Python3 you have installed, type the command:
+$ python3 --version
+Then you may visit the following resources to install it if you need based on your machine system
+For Linux(http://docs.python-guide.org/en/latest/starting/install3/linux/)
+For MacOS(http://docs.python-guide.org/en/latest/starting/install3/osx/)
 ```
-
+```
+pip - python library installation tool
+Please follow this(https://stackoverflow.com/questions/6587507/how-to-install-pip-with-python-3) to check if you need to install this and how to install based on your system type and python version
+```
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
+Here is the guide to get a development environment running for you
 
-Say what the step will be
+Please using this github repo url: https://github.com/AmberWangjie/Smartcar-API.git(HTTPS) or git@github.com:AmberWangjie/Smartcar-API.git(SSH) and clone the project into your local directory, then in that directory, make and activate an virtualenv for this project, remember to install the requirements for this virtualenv, now you are all set to play with the program.
 
 ```
-Give the example
+$ mkdir your-directory
+$ git clone <url> your-directory
+$ cd your-directory; makevirtualenv your-env
+$ source your-directory/your-env/bin/activate
+$ pip install -r requirements.txt
 ```
 
 And repeat
@@ -34,9 +45,14 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+Here is how to run the automated tests for this system
 
-### Break down into end to end tests
+Under smartcar/, simply run the command below, optional is for getting for verbosity information
+```
+$ python3 manage.py test -v(optional) 2(optional)
+```
+
+### Testcases break down 
 
 Explain what these tests test and why
 
@@ -58,13 +74,9 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Django Rest Framework](http://www.django-rest-framework.org/) 
+* [Django](https://docs.djangoproject.com/en/2.0/intro/) 
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
 
@@ -72,9 +84,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **Amber Wang** - *Initial work* - [AmberWangjie](https://github.com/AmberWangjie)
 
 ## License
 
