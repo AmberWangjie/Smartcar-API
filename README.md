@@ -110,17 +110,17 @@ The tests written for this application were based on both features of different 
 
 Due to the limit of time, the test cases offered here are not be able to cover all of the function points and use cases. For example, in test_view.py and test_serializer.py, only tests for vehicle info and security info offered for now, other tests could be written following the same structures and idea.
 
-<b>views tests<\b> - Testing the flows from objects creation to object retrieving through GET and POST requests to Smart API endpoints
-<b>api tests<\b> - Testing the complete flow for every Smart API endpoint from sending requests to GM API endpoints, getting information from responses, parsing and construcing data for requesting Smart API and validating the responses finally
-<b>serializer tests<\b> - Testing the flow from objects creation based on models to serializing them to valid data type
+* <b>views tests</b> - Testing the flows from objects creation to object retrieving through GET and POST requests to Smart API endpoints
+* <b>api tests</b> - Testing the complete flow for every Smart API endpoint from sending requests to GM API endpoints, getting information from responses, parsing and construcing data for requesting Smart API and validating the responses finally
+* <b>serializer tests</b> - Testing the flow from objects creation based on models to serializing them to valid data type
 
 
 ### Modules break down
 
-<b>models<\b> - Models are designed to store the objects with some structures into database. In this project, different resources have their own model but related through some attributes.
-<b>serializers<\b> - Serializers are used to serializing the instances into representations such as json format in our case. In this project, they are highly uniform with the models.
-<b>views<\b> - Views are how data interacting with the web APIs using requests and responses. In this project, views were created based on funcionality of the endpoints and the request methods.
-<b>urls<\b> - Urls are url patterns matching resources to API endpoints. In this project, urls were formed along with the resource name and query parameter using regex.
+* <b>models</b> - Models are designed to store the objects with some structures into database. In this project, different resources have their own model but related through some attributes.
+* <b>serializers</b> - Serializers are used to serializing the instances into representations such as json format in our case. In this project, they are highly uniform with the models.
+* <b>views</b> - Views are how data interacting with the web APIs using requests and responses. In this project, views were created based on funcionality of the endpoints and the request methods.
+* <b>urls</b> - Urls are url patterns matching resources to API endpoints. In this project, urls were formed along with the resource name and query parameter using regex.
 
 
 ## Built With
@@ -143,6 +143,6 @@ Not applicable yet.
 
 ## Acknowledgments
 
-* This project was sponsored technically by Smartcar Inc, really appreciate the help from their team! 
+* This project was technically supported by Smartcar Inc, really appreciate the help from their team! 
 
 
