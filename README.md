@@ -96,6 +96,10 @@ http://127.0.0.0:8000/vehicles
 ```
 Please reference the The Smartcar API Spec for how to visit each endpoint RESTfully
 
+Note that if you want to clean up all of the endpoints or you changed something in the source code or something just messed up and you don't know why:), it is recommended to run the clean.py script offered along side the manage.py and application to clean the cache and redo the database migrations. To do this, run
+```
+$ python3 clean.py
+```
 ## Running the tests
 
 The tests for this project were written using Django's unittest framework. Here is how to run the automated tests for this system.
