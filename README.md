@@ -146,10 +146,9 @@ Not applicable yet.
 
 * This project was technically supported by Smartcar Inc, really appreciate the help from their team! 
 
-### TBD
+## TBD
 
 Here is a to-do list of this project to get it more complete and function-well
 
-* Don't let vehicle_id shown in the response(have to pass it into request due to the key relation, can customize response? or use two different serializer for each object)
 * engine POST request and response customization
 * add user authentications and permissions

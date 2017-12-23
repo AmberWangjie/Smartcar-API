@@ -30,7 +30,8 @@ class vehicleSerializerTest(TestCase):
         """ verify if the serialzier has the exact attributes it is expected to"""
         data = self.serializer.data
         #using set to make sure addition or removal of any field to the serializer will be detected by test
-        self.assertEqual(set(data.keys()), set(['vid', 'vin', 'color', 'doorCount', 'driveTrain']))
+       # print(set(data.keys()))
+        self.assertEqual(set(data.keys()), set(['vin', 'color', 'doorCount', 'driveTrain']))
 
         """ check if serialzier produces expected data to single field"""
         self.assertEqual(data['color'], self.object_attributes['color'])
@@ -61,7 +62,7 @@ class securitySerializerTest(TestCase):
         """ verify if the serialzier has the exact attributes it is expected to"""
         data = self.serializer.data
         #using set to make sure addition or removal of any field to the serializer will be detected by test
-        self.assertEqual(set(data.keys()), set(['location', 'locked', 'vehicle']))
+        self.assertEqual(set(data.keys()), set(['location', 'locked']))
         
         """ check if serialzier produces expected data to single field"""
         self.assertEqual(data['location'], self.object_attributes['location'])

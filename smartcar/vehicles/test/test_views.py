@@ -45,7 +45,7 @@ class GetSingleVehicleTest(TestCase):
     valid_vehicle_list = [ ]
     invalid_query_set = ['1236']
     def setUp(self):
-        self.first = Vehicle.objects.create(vid='1234', vin='1213231', color='Metallic Silve', doorCount=4, driveTrain='v8')
+        self.first = Vehicle.objects.create(vid='1234', vin='1213231', color='Metallic Silver', doorCount=4, driveTrain='v8')
         self.valid_vehicle_list.append(self.first)
         self.second = Vehicle.objects.create(
             vid='1235', vin='1235AZ91XP', color='Forest Green', doorCount=2, driveTrain='electric')
