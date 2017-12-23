@@ -94,7 +94,7 @@ You may also visit the simple browsable UI of this API using your favorite brows
 ```
 http://127.0.0.0:8000/vehicles
 ```
-Please reference the Smart [Spec](/Users/AmberWang/Library/Containers/com.apple.mail/Data/Library/Mail\ Downloads/079A1DEC-9C8B-4201-BDEA-E823FAC3D389/Smartcar\ Backend\ Challenge.html) for how to visit each endpoint RESTfully
+Please reference the The Smartcar API Spec for how to visit each endpoint RESTfully
 
 ## Running the tests
 
