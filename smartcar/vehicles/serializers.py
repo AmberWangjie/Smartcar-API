@@ -5,6 +5,7 @@ from vehicles.models import Fuel
 from vehicles.models import Battery
 from vehicles.models import Engine
 
+    
 class VehicleSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -14,14 +15,9 @@ class VehicleSerializer(serializers.ModelSerializer):
     def to_representation(self, obj):
         # get the original representation
         ret = super(VehicleSerializer, self).to_representation(obj)
-
-
-      #  if is_mobile_platform(self.context.get('request', None)):
         ret.pop('vid')
-
         # here write the logic to check whether `elements` field is to be removed 
         # pop 'elements' from 'ret' if condition is True
-
         # return the modified representation
         return ret 
         
@@ -30,6 +26,14 @@ class SecuritySerializer(serializers.ModelSerializer):
         model = Security
         fields = ('location', 'locked', 'vehicle')
 
+    # def validate(self, data):
+    #     """
+    #     Check that the 'locked' data is a strict bool type.
+    #     """
+    #     if data['locked'] in (str(True), str(False), "true", "false"):
+    #         raise serializers.ValidationError("Not a strict boolean value")
+    #     return data
+    
     def to_representation(self, obj):
         # get the original representation
         ret = super(SecuritySerializer, self).to_representation(obj)

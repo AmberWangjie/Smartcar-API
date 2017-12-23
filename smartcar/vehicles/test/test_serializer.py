@@ -39,6 +39,7 @@ class vehicleSerializerTest(TestCase):
 
 
     def test_invalid_field_vehicle(self):
+        """verify if the serialzier has the ability to detect invalid field """
        # data = self.serializer.data
         invalid_list = [3, 4.0]
         for item in invalid_list:
@@ -70,9 +71,35 @@ class securitySerializerTest(TestCase):
 
     # def test_invalid_field_security(self):
     #    # data = self.serializer.data
-    #     invalid_list = ['true', 'false']
+    #     invalid_list = [str(True)]
     #     for item in invalid_list:
     #         self.serializer_data['locked'] = item
     #         serializer = SecuritySerializer(data = self.serializer_data)
-    #        # self.assertFalse(serializer.is_valid())
+    #         self.assertFalse(serializer.is_valid())
     #     self.assertEqual(set(serializer.errors), set(['locked']))
+
+class energySerializerTest(TestCase):
+    """ Test module for serializer of energy object (fuel/battery)"""
+    def setUp(self):
+        self.vehicle_attributes = {'vid': '1234', 'vin':'1213231', 'color':'Metallic Silver', 'doorCount':4, 'driveTrain':'v8'}
+        self.object_attributes = {'percent': 35.6, 'vehicle':'1234'}
+        self.serializer_data = {'percent': 1.37, 'vehicle':'1234'}
+        self.vehicle = Vehicle.objects.create(**self.vehicle_attributes)
+        self.fuel = self.vehicle.fuelLevel.create(**self.object_attributes)
+        self.serializer = FuelSerializer(instance=self.fuel)
+
+    def test_contain_field_energy(self):
+        """ verify if the serialzier has the exact attributes it is expected to"""
+        data = self.serializer.data
+        self.assertEqual(set(data.keys()), set(['percent']))
+        """ check if serialzier produces expected data to single field"""
+        self.assertEqual(data['percent'], self.object_attributes['percent'])
+
+    # def test_invalid_field_energy(self):
+    #     """verify if the serialzier has the ability to detect invalid field """
+    #     invalid_list = [int(40.0), "null"]
+    #     for item in invalid_list:
+    #         self.serializer_data['percent'] = item
+    #         serializer = FuelSerializer(data=self.serializer_data)
+    #         self.assertFalse(serializer.is_valid())
+    #     self.assertEqual(set(serializer.errors), set(['percent']))
