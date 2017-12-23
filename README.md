@@ -10,27 +10,25 @@ These instructions will get you a copy of the project up and running on your loc
 
 Following are the prerequisites to run this program you need to install and how to intall them
 
+<b>python3</b> - The project was built using python 3.6.3, to see which version you have installed
 ```
-python3 - The project was built using python 3.6.3, to see which version you have installed
 $ python3 --version
-
+```
 Then you may visit the following guidance to install it in your system
 For [Linux](http://docs.python-guide.org/en/latest/starting/install3/linux/)
 For [MacOS](http://docs.python-guide.org/en/latest/starting/install3/osx/)
-```
-```
-pip - A tool for python library quick installation 
+
+<b>pip</b> - A tool for python library quick installation 
 Follow [this](https://stackoverflow.com/questions/6587507/how-to-install-pip-with-python-3) to check and install
-```
-```
-virtualenv - A tool to create isolated python environments to help manage dependencies and versions
+
+<b>virtualenv</b> - A tool to create isolated python environments to help manage dependencies and versions
 Follow [this](http://docs.python-guide.org/en/latest/dev/virtualenvs/) to check and install
-```
+
 ### Installing
 
 Here is the guide to get a development environment of this project running for you
 
-Please using this github repo url: https://github.com/AmberWangjie/Smartcar-API.git(HTTPS) or git@github.com:AmberWangjie/Smartcar-API.git(SSH) and clone the project into your local directory, then in that directory, make and activate an virtualenv for this project, remember to install the requirements for this virtualenv, now you are all set to play with the program.
+Please using this github repo url by clicking the button at the upper-right corner of this page and clone the project into your local directory, then in that directory, make and activate an virtualenv for this project, remember to install the requirements for this virtualenv, now you are all set to play with the program.
 
 ```
 $ mkdir your-directory
@@ -42,16 +40,28 @@ $ pip install -r requirements.txt
 Under smartcar\, make sure you can see the following file hierarchy.
 Note that this project was structured as a DRF project called <b>smartcar</b>, with all the features built in a DRF application inside this project called <b>vehicles</b>; the whole project was developed in a virtual env called <b>smart-api</b> and under the folder called smartcar. The requirement.txt is for holding the dependencies imported into this env.
 ```
-── smartcar
+└── smartcar
     ├── db.sqlite3
     ├── manage.py
     ├── smartcar
     │   ├── __init__.py
+    │   ├── __pycache__
+    │   │   ├── __init__.cpython-36.pyc
+    │   │   ├── settings.cpython-36.pyc
+    │   │   ├── urls.cpython-36.pyc
+    │   │   └── wsgi.cpython-36.pyc
     │   ├── settings.py
     │   ├── urls.py
     │   └── wsgi.py
     └── vehicles
         ├── __init__.py
+        ├── __pycache__
+        │   ├── __init__.cpython-36.pyc
+        │   ├── admin.cpython-36.pyc
+        │   ├── models.cpython-36.pyc
+        │   ├── serializers.cpython-36.pyc
+        │   ├── urls.cpython-36.pyc
+        │   └── views.cpython-36.pyc
         ├── admin.py
         ├── apps.py
         ├── migrations
@@ -67,15 +77,15 @@ Note that this project was structured as a DRF project called <b>smartcar</b>, w
         │   ├── __pycache__
         │   │   ├── __init__.cpython-36.pyc
         │   │   ├── test_api.cpython-36.pyc
+        │   │   ├── test_serializer.cpython-36.pyc
         │   │   └── test_views.cpython-36.pyc
         │   ├── test_api.py
-        │   ├── test_api.py~
-        │   ├── test_views.py
-        │   └── test_views.py~
+        │   ├── test_serializer.py
+        │   └── test_views.py
         ├── urls.py
         └── views.py
 ```
-If so, to run the server
+If you see so, it is time to run the server under smartcar/smartcar
 ```
 $ python3 manage.py runserver
 ```
@@ -92,27 +102,26 @@ Under smartcar/ (same location to run the server), run the command below, option
 ```
 $ python3 manage.py test -v(optional) 2(optional)
 ```
-The results will be shown as "OK" if all of the test cases are passed, otherwise "Failed" with detail error information
+The results will be shown as "OK" if all of the test cases are passed, otherwise "FAIL|ERROR" with detail information
 
 ### Testcases break down 
 
-Explain what these tests test and why
+The tests written for this application were based on both features of different endpoints and functional modules of DRF framework.
 
-```
-Give an example
-```
+Due to the limit of time, the test cases offered here are not be able to cover all of the function points and use cases. For example, in test_view.py and test_serializer.py, only tests for vehicle info and security info offered for now, other tests could be written following the same structures and idea.
 
-### And coding style tests
+<b>views tests<\b> - Testing the flows from objects creation to object retrieving through GET and POST requests to Smart API endpoints
+<b>api tests<\b> - Testing the complete flow for every Smart API endpoint from sending requests to GM API endpoints, getting information from responses, parsing and construcing data for requesting Smart API and validating the responses finally
+<b>serializer tests<\b> - Testing the flow from objects creation based on models to serializing them to valid data type
 
-Explain what these tests test and why
 
-```
-Give an example
-```
+### Modules break down
 
-## Deployment
+<b>models<\b> - Models are designed to store the objects with some structures into database. In this project, different resources have their own model but related through some attributes.
+<b>serializers<\b> - Serializers are used to serializing the instances into representations such as json format in our case. In this project, they are highly uniform with the models.
+<b>views<\b> - Views are how data interacting with the web APIs using requests and responses. In this project, views were created based on funcionality of the endpoints and the request methods.
+<b>urls<\b> - Urls are url patterns matching resources to API endpoints. In this project, urls were formed along with the resource name and query parameter using regex.
 
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
@@ -122,7 +131,7 @@ Add additional notes about how to deploy this on a live system
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+This is so far the only version available from this author. Later development and iteration is recommended to use version management tools for versioning.
 
 ## Authors
 
@@ -130,11 +139,10 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+Not applicable yet.
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+* This project was sponsored technically by Smartcar Inc, really appreciate the help from their team! 
+
 

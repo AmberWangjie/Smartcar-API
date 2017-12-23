@@ -1,9 +1,8 @@
 from django.test import TestCase
 import json
-from rest_framework.renderers import JSONRenderer
-from rest_framework.parsers import JSONParser
+import requests
 from rest_framework import status
-from django.test import TestCase, Client
+from django.test import Client
 from django.urls import reverse
 from vehicles.models import Vehicle
 from vehicles.models import Security
@@ -26,7 +25,7 @@ class GetAllVehiclesTest(TestCase):
 
     def setUp(self):
         Vehicle.objects.create(
-            vid='1234', vin='1213231', color='Metallic Silve', doorCount=4, driveTrain='v8')
+            vid='1234', vin='1213231', color='Metallic Silver', doorCount=4, driveTrain='v8')
         Vehicle.objects.create(
             vid='1235', vin='1235AZ91XP', color='Forest Green', doorCount=2, driveTrain='electric')
        
@@ -40,20 +39,21 @@ class GetAllVehiclesTest(TestCase):
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+
 class GetSingleVehicleTest(TestCase):
     """ Test module for GET single vehicle detail API """
-    vehicle_list = [ ]
-    
+    valid_vehicle_list = [ ]
+    invalid_query_set = ['1236']
     def setUp(self):
         self.first = Vehicle.objects.create(vid='1234', vin='1213231', color='Metallic Silve', doorCount=4, driveTrain='v8')
-        self.vehicle_list.append(self.first)
+        self.valid_vehicle_list.append(self.first)
         self.second = Vehicle.objects.create(
             vid='1235', vin='1235AZ91XP', color='Forest Green', doorCount=2, driveTrain='electric')
-        self.vehicle_list.append(self.second)
+        self.valid_vehicle_list.append(self.second)
         
     def test_get_valid_single_vehicle(self):
         """ Check validity of each single vehicle in the list """
-        for vehicle in self.vehicle_list:
+        for vehicle in self.valid_vehicle_list:
             response = client.get(
                 reverse('get-vehicle-detail', kwargs={'pk': vehicle.pk}))
             # response = client.get('get-vehicle-detail/1234')
@@ -63,16 +63,20 @@ class GetSingleVehicleTest(TestCase):
             self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_get_invalid_single_vehicle(self):
-        response = client.get(
-            reverse('get-vehicle-detail', kwargs={'pk': '1236'}))
-        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
-
+        """check response error for invalid query parameter """
+        for item in self.invalid_query_set:
+            response = client.get(
+                reverse('get-vehicle-detail', kwargs={'pk': item}))
+            self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        
 
 
 class CreateNewVehicleTest(TestCase):
     """ Test module for creating a new vehicle by POST"""
     valid_payload_list = [ ]
-    invalid_payload_list = [ ]
+    invalid_payload_list = []
+    HEADER = {"content-type": "application/json"}
+    URL = "http://127.0.0.1:8000/vehicles/"
     
     def setUp(self):
         # self.valid_payload_first = {
@@ -82,16 +86,16 @@ class CreateNewVehicleTest(TestCase):
         #     'doorCount': 4,
         #     'driveTrain': 'v7'
         # }
-        self.valid_payload_first = {'vid': '1236', 'vin': '1213232', 'color': 'Metallic Silver', 'doorCount': 4, 'driveTrain': 'v7'}
-        self.valid_payload_list.append(self.valid_payload_first)
+ 
+ #       self.valid_payload_list.append(self.valid_payload_first)
         
         # self.valid_payload_second = {
-        #     'vid': '1235',
-        #     'vin': '1235AZ91XP',
+        #     'vid': '1237',
+        #     'vin': '1235AZ91XM',
         #     'color': 'Forest Green',
         #     'doorCount': 2,
         #     'driveTrain': 'electric'
-	# }
+        # }
         # self.valid_payload_list.append(self.valid_payload_second)
         
         self.invalid_payload_id = {
@@ -103,31 +107,54 @@ class CreateNewVehicleTest(TestCase):
         }
         self.invalid_payload_list.append(self.invalid_payload_id)
         
-        self.invalid_payload_vin = {
+        self.invalid_payload_door = {
             'vid': '1234',
-            'vin': '',
+            'vin': '1213231',
             'color': 'Metallic Silver',
-            'doorCount': 4,
+            'doorCount': 6,
             'driveTrain': 'v8'
         }
-        self.invalid_payload_list.append(self.invalid_payload_vin)
+        self.invalid_payload_list.append(self.invalid_payload_door)
         
-    # def test_create_valid_vehicle(self):
-    #     for valid_payload in self.valid_payload_list:
-    #         response = client.post(
-    #             reverse('get-vehicle-list'),
-    #            # data=json.dumps(valid_payload),
-    #             data=JSONRenderer().render(valid_payload),
-    #             content_type='application/json'
-    #         )
-    #         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+   # def test_create_valid_vehicle(self):
+    #save this valid create test to test_api.py
+ 
             
     def test_create_invalid_vehicle(self):
         for invalid_payload in self.invalid_payload_list:
-            response = client.post(
-                reverse('get-vehicle-list'),
-                data=json.dumps(invalid_payload),
-                content_type='application/json'
-            )
+            response = requests.post(url=self.URL, headers=self.HEADER, data=json.dumps(invalid_payload))
             self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
  
+
+# class GetDoorsForVehicleTest(TestCase):
+#     """ Test module for GET doors security of a single vehicle  """
+#     valid_doors_list = [ ]
+#     invalid_query_set = [ ]
+#     def setUp(self):
+#         self.vehicle = Vehicle.objects.create(
+#             vid='1235', vin='1235AZ91XP', color='Forest Green', doorCount=2, driveTrain='electric')
+#         self.first = self.vehicle.doors.create(
+#             location='frontLeft', locked=True, vehicle='1235')
+#         self.valid_doors_list.append(self.first)
+#         self.second = self.vehicle.doors.create(
+#             location='frontRight', locked=True, vehicle='1235')
+#         self.valid_doors_list.append(self.second)
+
+#     def test_get_valid_doors(self):
+#         """ Check validity of door security about a single vehicle  """
+#       #  for item in self.valid_doors_list:
+#         response = client.get(reverse('get-vehicle-doors', kwargs={'pk': self.vehicle.pk}))
+#         print(response.data)
+#       # response = client.get('get-vehicle-detail/1234')
+#      # vehicle_obj = Vehicle.objects.get(pk=vehicle.pk)
+#      # serializer = VehicleSerializer(vehicle_obj)
+#      # print(response.data)
+#      # self.assertEqual(response.data, serializer.data)
+#      # self.assertEqual(response.status_code, status.HTTP_200_OK)
+      
+#     def _get_invalid_single_vehicle(self):
+#         """check response error for invalid query parameter """
+#         for item in self.invalid_query_set:
+#             response = client.get(
+#                 reverse('get-vehicle-detail', kwargs={'pk': item}))
+#             self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)

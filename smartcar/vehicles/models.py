@@ -9,7 +9,7 @@ from rest_framework import serializers
 class Vehicle(models.Model):
     DOOR_COUNT_CHOICES = ((2, 'twoDoorCoupe'), (4, 'fourDoorSedan'))
     
-    vid = models.CharField(max_length=100, primary_key=True)
+    vid = models.CharField(max_length=100, primary_key=True, blank=False)
     vin = models.CharField(max_length=100, blank=False)
     color = models.CharField(max_length=100, blank=False)
     doorCount = models.IntegerField(choices=DOOR_COUNT_CHOICES)
