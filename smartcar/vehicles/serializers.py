@@ -10,38 +10,39 @@ class VehicleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vehicle
         fields = ('vid', 'vin', 'color', 'doorCount', 'driveTrain')
-#        read_only_fields = ('vid','vin')
+
         
 class SecuritySerializer(serializers.ModelSerializer):
     class Meta:
         model = Security
         fields = ('location', 'locked', 'vehicle')
- #       read_only_fields = ('vehicle')
+
         
 class FuelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fuel
         fields = ('percent', 'vehicle')
-  #      read_only_fields = ('vehicle')
+
 
 class BatterySerializer(serializers.ModelSerializer):
     class Meta:
         model = Battery
         fields = ('percent', 'vehicle')
-   #     read_only_fields = ('vehicle')
 
+
+#Note for POST request to vehicle_id/engine, the implementation is not an ideal one up to ddl, need to pass the status into requests since I stored the status with its command retrieved from GM beforehand
+#should be go to GM every time need to POST to id/engine, then use that info to construct this request
 class requestEngineSerializer(serializers.ModelSerializer):
     class Meta:
         model = Engine
-        fields = ('action', 'vehicle')
-    #    read_only_fields = ('vehicle')
-     #   write_only_fields = ('action')
+        fields = ('action', 'status', 'vehicle')
+
 
 class responseEngineSerializer(serializers.ModelSerializer):
     class Meta:
         model = Engine
         fields = ('status', 'vehicle')
-      #  read_only_fields = ('vehicle')
+
 
 
 
