@@ -28,12 +28,13 @@ Follow [this](http://docs.python-guide.org/en/latest/dev/virtualenvs/) to check 
 
 Here is the guide to get a development environment of this project running for you
 
-Please using this github repo url by clicking the button at the upper-right corner of this page and clone the project into your local directory, then in that directory, make and activate an virtualenv for this project, remember to install the requirements for this virtualenv, now you are all set to play with the program.
+Please using this github repo url by clicking the button at the upper-right corner of this page and clone the project into your local directory, then in that directory, make and activate an virtualenv for this project(best practice is to name the env using the same name as the project folder, which make the structure of files more consice, I didn't realize it when initialized this), remember to install the requirements for this virtualenv, now you are all set to play with the program.
 
 ```
-$ mkdir your-directory
-$ git clone <url> your-directory
-$ cd your-directory; makevirtualenv your-env
+$ mkdir your-directory; cd your-directory
+$ git clone <project-url>
+$ virtualenv your-env (Note if you have several versions of python installed, use the command below)
+$ virtualenv -p /usr/bin/python3.6(directory of python installed) your-env
 $ source your-directory/your-env/bin/activate
 $ pip install -r requirements.txt
 ```
