@@ -24,7 +24,7 @@ Follow [this](https://stackoverflow.com/questions/6587507/how-to-install-pip-wit
 <b>virtualenv</b> - A tool to create isolated python environments to help manage dependencies and versions
 Follow [this](http://docs.python-guide.org/en/latest/dev/virtualenvs/) to check and install
 
-### Installing
+### Set Up
 
 Here is the guide to get a development environment of this project running for you
 
