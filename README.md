@@ -8,7 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-Following are the prerequisites to run this program you need to install and how to intall them
+Following are the prerequisites to run this program you need to install and how to install them
 
 <b>python3</b> - The project was built using python 3.6.3, to see which version you have installed
 ```
