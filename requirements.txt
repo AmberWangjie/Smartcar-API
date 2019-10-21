@@ -9,7 +9,7 @@ django-crispy-forms==1.7.0
 django-filter==1.1.0
 django-guardian==1.4.9
 djangorestframework==3.7.3
-httpie==0.9.9
+httpie==1.0.3
 httplib2==0.10.3
 idna==2.6
 itypes==1.1.0
